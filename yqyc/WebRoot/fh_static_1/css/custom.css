@@ -1,0 +1,23 @@
+.onloads {
+	width: 600px;
+	cursor: move;
+}
+
+.numbers {
+	float: right;
+}
+
+.shuju {
+	display: none;
+}
+
+.onloads_left {
+	width: 79%;
+	float: left;
+}
+
+.onloads_right {
+	width: 21%;
+	float: left;
+	line-height: 34px;
+}

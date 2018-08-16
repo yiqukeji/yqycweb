@@ -1,0 +1,478 @@
+body{
+	background: #F4F4F4;
+}
+.banner{
+	width: 100%;
+	height: auto;
+	position: relative;
+}
+
+.banner img{
+	width: 100%;
+	height: auto;
+}
+
+.child_nav{
+	width: 100%;
+	height: 200px;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+}
+
+.gyyq{
+	width: 100%;
+	height: 100px;
+	text-align: center;
+	line-height: 100px;
+}
+
+.gyyq p{
+	font-size: 30px;
+	color: white;
+}
+
+.nav_list{
+	width: 100%;
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+}
+
+.nav_list a{
+	color: white;
+	text-decoration: none;
+	display: inline-block;
+	width: 120px;
+	height: 40px;
+	transition: 1s;
+	line-height: 40px;
+	margin: 0px 15px;
+	border: 1px solid white;
+}
+
+.address{
+	height: 46px;
+	line-height: 46px;
+	margin: 30px auto;
+	background: white;
+	padding-left: 5px;
+	font-family: "新宋体";
+	font-size: 14px;
+	box-sizing: border-box;
+}
+
+.address a{
+	color: black;
+	text-decoration: none;
+}
+
+.details{
+	padding-left: 0px;
+	padding-right: 0px;
+	background: white;
+	margin-bottom: 70px;
+	box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.1);
+}
+
+.title{
+	width: 100%;
+	height: 60px;
+	position: relative;
+	line-height: 60px;
+	padding-left: 20px;
+	font-weight: 700;
+	box-sizing: border-box;
+}
+
+.title::after{
+	content: "";
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 5px;
+	height: 60px;
+	background: #187BE7;
+}
+
+.title p{
+	width: 98%;
+	font-size: 20px;
+	margin-bottom: 0px;
+	border-bottom: 1px solid #0892DB;
+}
+
+.fonts{
+	width: 100%;
+	height: auto;
+	margin: auto;
+	padding: 20px 40px;
+	box-sizing: border-box;
+}
+
+
+.fonts>div{
+	margin-bottom: 60px;
+	padding-left: 0px;
+	padding-right: 0px;
+	border-radius: 10px;
+}
+
+.yc_title{
+	width: 100%;
+	height: auto;
+	line-height: 36px;
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+.yc_left{
+	width: 40%;
+	height: 450px;
+	float: left;
+	z-index: 2;
+	position: relative;
+}
+
+.yc_left img{
+	width: 500px;
+	height: 420px;
+	position: relative;
+	z-index: 3;
+}
+
+.yc_left .yuan{
+	width: 500px;
+	height: 420px;
+	position: relative;
+	z-index: 3;
+}
+
+.yc_left .yuan .yqyc{
+	content: "";
+	position: absolute;
+	top: 50%;
+	right: -33px;
+	width: 66px;
+	height: 66px;
+	border-radius: 50%;
+	z-index: 4;
+	transition: 3s;
+}
+
+.yc_right{
+	width: 60%;
+	float: left;
+	height: 450px;
+	z-index: 1;
+}
+
+.yc_top{
+	width: 100%;
+	height: auto;
+	height: 60px;
+	padding-left: 120px;
+	box-sizing: border-box;
+}
+
+.yc_top h3{
+	margin-top: 0px;
+}
+
+.yc_bottom{
+	width: 100%;
+	height: 360px;
+	overflow: hidden;
+	background: #f1f1f1;
+	border-radius: 10px;
+	padding: 30px 20px 20px 120px;
+	box-sizing: border-box;
+	margin-top: 30px;
+	text-align: justify;
+	text-justify: inter-ideograph;
+}
+
+.yc_bottom_box{
+	width: 100%;
+	height: auto;
+	max-height: 310px;
+	overflow: hidden;
+}
+
+.yc_bottom p{
+	display: block;
+	width: 100%;
+	height: auto;
+	font-size: 16px;
+	overflow: hidden;
+	margin: 20px 0px;
+	text-align: justify;
+	text-justify: inter-ideograph;
+	text-indent: 32px;
+}
+
+
+
+
+
+.yc_title1{
+	width: 100%;
+	height: auto;
+	line-height: 36px;
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+.yc_title1 h3{
+	transition: 1s;
+}
+
+.yc_left1{
+	width: 40%;
+	height: 450px;
+	float: right;
+	z-index: 2;
+	position: relative;
+}
+
+.yc_left1 img{
+	width: 500px;
+	height: 420px;
+	position: relative;
+	z-index: 3;
+}
+
+.yc_left1 .yuan1{
+	width: 500px;
+	height: 420px;
+	position: absolute;
+	z-index: 3;
+	left: -70px;
+	top: 0px;
+}
+
+.yc_left1 .yuan1 .yqyc{
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: -33px;
+	width: 66px;
+	height: 66px;
+	border-radius: 50%;
+	z-index: 4;
+	transition: 3s;
+}
+
+.yc_right1{
+	width: 60%;
+	float: left;
+	height: 450px;
+	z-index: 1;
+}
+
+.yc_top1{
+	width: 100%;
+	height: auto;
+	height: 60px;
+	padding-left: 0px;
+	box-sizing: border-box;
+}
+
+.yc_top1 h3{
+	margin-top: 0px;
+}
+
+.yc_bottom1{
+	width: 100%;
+	height: 360px;
+	overflow: hidden;
+	background: #f1f1f1;
+	border-radius: 10px;
+	padding: 30px 120px 20px 20px;
+	box-sizing: border-box;
+	margin-top: 30px;
+	text-align: justify;
+	text-justify: inter-ideograph;
+}
+
+.yc_bottom1 p{
+	display: block;
+    width: 100%;
+    height: auto;
+    font-size: 16px;
+    overflow: hidden;
+    margin: 20px 0px;
+    text-align: justify;
+    text-justify: inter-ideograph;
+    text-indent: 32px;
+	
+}
+
+
+
+
+
+@media only screen and (min-width: 100px) and (max-width: 768px) {
+	.banner{
+		display: none;
+	}
+	.details{
+		margin-bottom: 30px;
+	}
+	.address{
+		font-family: "微软雅黑";
+		font-size: 10px;
+	}
+	.title p{
+		font-size: 16px;
+	}
+	.fonts img{
+		width: 20%;
+		height: auto;
+		margin: 10px auto;
+	}
+	
+	
+	
+	.fonts>div{
+		margin-bottom: 20px;
+		padding-left: 0px;
+		padding-right: 0px;
+		border-radius: 10px;
+	}
+	.yc_left{
+		width: 100%;
+		height: auto;
+	}
+	
+	.yc_title{
+		margin-bottom: 10px;
+	}
+	
+	.yc_left .yuan{
+		width: 100%;
+		height: auto;
+	}
+	
+	.yc_left .yuan::before{
+		display: none;
+	}
+	
+	.yc_left img{
+		width: 100%;
+		height: auto;
+		z-index: 3;
+	}
+	
+	.yc_right{
+		width: 100%;
+		height: auto;
+	}
+	
+	.yc_top{
+		width: 100%;
+		height: auto;
+		text-align: center;
+		padding-left: 0px;
+		box-sizing: border-box;
+	}
+	
+	.yc_bottom{
+		width: 100%;
+		height: auto;
+		overflow: hidden;
+		background: gainsboro;
+		padding: 10px;
+		box-sizing: border-box;
+		border-radius: 10px;
+		margin-top: 10px;
+	}
+		
+	.yc_bottom p{
+		display: block;
+		width: 100%;
+		height: auto;
+		max-height: 120px;
+		overflow: hidden;
+		margin: 20px 0px;
+	}
+	
+	
+	
+	
+	
+	.yc_left1{
+		width: 100%;
+		height: auto;
+	}
+	
+	.yc_title1{
+		margin-bottom: 10px;
+	}
+	
+	.yc_left1 .yuan1{
+		width: 100%;
+		height: auto;
+		position: relative;
+		left: 0px;
+	}
+	
+	.yc_left1 .yuan1::before{
+		display: none;
+	}
+	
+	.yc_left1 img{
+		width: 100%;
+		height: auto;
+		z-index: 3;
+	}
+	
+	.yc_right1{
+		width: 100%;
+		height: auto;
+	}
+	
+	.yc_top1{
+		width: 100%;
+		height: auto;
+		text-align: center;
+		padding-left: 0px;
+		box-sizing: border-box;
+	}
+	
+	.yc_top1 p,.yc_top p{
+		margin-bottom: 0px;
+	}
+	
+	.yc_bottom1{
+		width: 100%;
+		height: auto;
+		overflow: hidden;
+		background: gainsboro;
+		padding: 10px;
+		box-sizing: border-box;
+		border-radius: 10px;
+		margin-top: 10px;
+	}
+		
+	.yc_bottom1 p{
+		display: block;
+		width: 100%;
+		height: auto;
+		max-height: 120px;
+		overflow: hidden;
+		margin: 20px 0px;
+	}
+	
+	
+	.yc_left .yuan .yqyc,.yc_left1 .yuan1 .yqyc{
+		display: none;
+	}
+	
+}
+
+
+.bg{
+	background: #0892DB;
+	border: none !important;
+}

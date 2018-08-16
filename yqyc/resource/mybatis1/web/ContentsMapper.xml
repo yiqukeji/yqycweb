@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ContentsMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		WEB_CONTENTS
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		TITLE,	
+		PUBLISHER,	
+		PUB_TYPE,	
+		CRE_TIME,	
+		PUB_TIME,	
+		CONTENT,	
+		PUB_LINK,	
+		THUMNAIL,	
+		PUB_STATE,	
+		PUB_POSITION,	
+		CONTENTS_ID,
+		C_STATE,
+		NUMBER,
+		PUB_SOURCE,
+		DESCRIPTION,
+		ORDER0,
+		ARTICAL_TYPE,
+		NEWS_TYPE,
+		ADDRESS,
+		YB,
+		EMAIL,
+		TEL,
+		RIGHTDATE,
+		MENU
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{TITLE},	
+		#{PUBLISHER},	
+		#{PUB_TYPE},	
+		#{CRE_TIME},	
+		#{PUB_TIME},	
+		#{CONTENT},	
+		#{PUB_LINK},	
+		#{THUMNAIL},	
+		#{PUB_STATE},	
+		#{PUB_POSITION},	
+		#{CONTENTS_ID},
+		#{C_STATE},
+		#{NUMBER},
+		#{PUB_SOURCE},
+		#{DESCRIPTION},
+		#{ORDER0},
+		#{ARTICAL_TYPE},
+		#{NEWS_TYPE},
+		#{ADDRESS},
+		#{YB},
+		#{EMAIL},
+		#{TEL},
+		#{RIGHTDATE},
+		#{MENU}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			CONTENTS_ID = #{CONTENTS_ID}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+			TITLE = #{TITLE},
+			PUBLISHER = #{PUBLISHER},
+			PUB_TYPE = #{PUB_TYPE},
+			PUB_TIME = #{PUB_TIME},
+			CONTENT = #{CONTENT},
+			PUB_LINK = #{PUB_LINK},
+			THUMNAIL = #{THUMNAIL},
+			PUB_STATE = #{PUB_STATE},
+			PUB_POSITION = #{PUB_POSITION},
+		    C_STATE = #{C_STATE},
+		    PUB_SOURCE =#{PUB_SOURCE},
+		    DESCRIPTION =#{DESCRIPTION},
+		    ORDER0 = #{ORDER0},
+		    NEWS_TYPE = #{NEWS_TYPE},
+		    YB = #{YB},
+		    ADDRESS = #{ADDRESS},
+		    EMAIL = #{EMAIL},
+		    TEL = #{TEL},
+		    MENU = #{MENU}
+		where 
+		CONTENTS_ID = #{CONTENTS_ID}
+	</update>
+	<update id="editByType" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+		    ARTICAL_TYPE =#{ARTICAL_TYPE}
+		where 
+		CONTENTS_ID = #{CONTENTS_ID}
+	</update>
+	<update id="editRight" parameterType="pd">
+	update
+	<include refid="tableName"></include>
+	set 
+	    RIGHTDATE =#{RIGHTDATE}
+	where 
+	CONTENTS_ID = #{CONTENTS_ID}
+   </update>
+	<!-- 修改 -->
+	<update id="editByCount" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+		    NUMBER = #{NUMBER}
+		where 
+		CONTENTS_ID = #{CONTENTS_ID}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+			CONTENTS_ID = #{CONTENTS_ID}
+	</select>
+	
+	<select id="findPreNext" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+			<if test="PUB_TYPE == 'prev'">
+			 CONTENTS_ID &lt; #{CONTENTS_ID} and PUB_TYPE = #{type} order by PUB_POSITION desc, PUB_TIME desc  LIMIT 1
+			</if>
+			<if test="PUB_TYPE == 'next'">
+			 CONTENTS_ID &gt; #{CONTENTS_ID} and PUB_TYPE = #{type} order by PUB_POSITION desc, PUB_TIME   LIMIT 1
+			</if>
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 1=1
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+				
+					TITLE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					<!-- or 
+					根据需求自己加检索条件	字段2 LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				-->
+				or DESCRIPTION LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				)
+		</if>
+		<if test="pd.PUB_TYPE!=null and pd.PUB_TYPE!=''">
+		and PUB_TYPE = #{pd.PUB_TYPE}
+		</if>
+		<if test="pd.PUB_TYPE!=null and pd.PUB_TYPE!=''">
+		or ARTICAL_TYPE like CONCAT(CONCAT('%', #{pd.PUB_TYPE}),'%')
+		</if>
+		<if test="pd.C_STATE!=null and pd.C_STATE!=''">
+		and C_STATE = #{pd.C_STATE}
+		</if>
+		<if test="pd.PUB_POSITION!=null and pd.PUB_POSITION!=''">
+		and PUB_POSITION = #{pd.PUB_POSITION}
+		</if>
+		<if test="pd.PUB_STATE!=null and pd.PUB_STATE!=''">
+		and PUB_STATE = '1'
+		</if>
+		order by PUB_POSITION desc,PUB_TIME desc,ORDER0 desc
+	</select>
+	<!-- 列表 -->
+	<select id="datalistPage0" parameterType="page" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where
+		<if test="pd.PUB_POSITION!=null and pd.PUB_POSITION!=''">
+		and PUB_POSITION = #{pd.PUB_POSITION}
+		</if>
+		<if test="pd.PUB_STATE!=null and pd.PUB_STATE!=''">
+		and PUB_STATE = '1'
+		</if>
+		<if test="pd.PUB_TYPE!=null and pd.PUB_TYPE!=''">
+		or ARTICAL_TYPE like CONCAT(CONCAT('%', #{pd.PUB_TYPE}),'%')
+		</if>
+		order by PUB_POSITION desc,PUB_TIME desc
+	</select>
+	<!-- 查询新闻图片数据 -->
+	<select id="datalistPage1" parameterType="page" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>t
+		where
+		t.PUB_POSITION = '1'
+		order by PUB_POSITION desc,PUB_TIME desc
+	</select>
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+	</select>
+	
+	<!-- 列表(部分组织机构数据-部门简介) -->
+	<select id="listByType" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		t
+		where 
+		t.PUB_TIME = (
+		SELECT
+			max(t2.PUB_TIME)
+		FROM
+			WEB_CONTENTS t2 where  t2.PUB_TYPE=#{PUB_TYPE}
+	) 
+	and t.PUB_TYPE=#{PUB_TYPE}
+	</select>
+	<!-- 列表(部分组织机构数据-工作人员) -->
+	<select id="listByType0" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 1=1
+		<if test="pd.PUB_TYPE!=null and pd.PUB_TYPE!=''">
+		and PUB_TYPE = #{pd.PUB_TYPE}
+		</if>
+		<if test="pd.PUB_TYPE!=null and pd.PUB_TYPE!=''">
+		or ARTICAL_TYPE like CONCAT(CONCAT('%', #{pd.PUB_TYPE}),'%')
+		</if>
+		and PUB_STATE = '1'
+	</select>
+	<!-- 列表(部分组织机构数据-科室) -->
+	<select id="listByType1" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		t
+		where
+		t.PUB_TIME = (
+		SELECT
+			max(t2.PUB_TIME)
+		FROM
+			WEB_CONTENTS t2 where  t2.PUB_TYPE=#{PUB_TYPE}
+	) 
+	t.PUB_TYPE=#{PUB_TYPE}
+	</select>
+	<!-- 查询最新的10条数据 -->
+	<select id="listByTime" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		t where t.PUB_TIME !='yqlj' ORDER BY t.PUB_TIME DESC limit 10
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			CONTENTS_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+</mapper>

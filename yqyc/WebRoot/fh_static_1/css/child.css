@@ -1,0 +1,168 @@
+body{
+	background: #F4F4F4;
+}
+.banner{
+	width: 100%;
+	height: auto;
+	position: relative;
+}
+
+.banner img{
+	width: 100%;
+	height: auto;
+}
+
+.child_nav{
+	width: 100%;
+	height: 200px;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+}
+
+.gyyq{
+	width: 100%;
+	height: 100px;
+	text-align: center;
+	line-height: 100px;
+}
+
+.gyyq p{
+	font-size: 30px;
+	color: white;
+}
+
+.nav_list{
+	width: 100%;
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+}
+
+.nav_list a{
+	color: white;
+	text-decoration: none;
+	display: inline-block;
+	width: 120px;
+	height: 40px;
+	transition: 1s;
+	line-height: 40px;
+	margin: 0px 15px;
+	border: 1px solid white;
+}
+
+.address{
+	height: 46px;
+	line-height: 46px;
+	margin: 30px auto;
+	background: white;
+	padding-left: 5px;
+	font-family: "新宋体";
+	font-size: 12px;
+	box-sizing: border-box;
+}
+
+.address a{
+	color: black;
+	text-decoration: none;
+}
+
+.details{
+	padding-left: 0px;
+	padding-right: 0px;
+	background: white;
+	margin-bottom: 70px;
+	box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.1);
+}
+
+.title{
+	width: 100%;
+	height: 60px;
+	position: relative;
+	line-height: 60px;
+	padding-left: 20px;
+	font-weight: 700;
+	box-sizing: border-box;
+}
+
+.title::after{
+	content: "";
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 5px;
+	height: 60px;
+	background: #187BE7;
+}
+
+.title p{
+	width: 98%;
+	font-size: 20px;
+	margin-bottom: 0px;
+	border-bottom: 1px solid #0892DB;
+}
+
+.fonts{
+	width: 100%;
+	height: auto;
+	margin: auto;
+	/*overflow: hidden;*/
+	padding: 20px 40px;
+	box-sizing: border-box;
+}
+
+/*.app{
+	width: 100%;
+}*/
+
+.fonts *{
+	text-indent: 32px !important;
+	text-align: justify !important;
+	font-size: 14px;
+	line-height: 30px;
+	text-justify: inter-ideograph !important;
+	font-family: "方正仿宋";
+}
+
+.fonts img{
+	display: block;
+	width: 90%;
+	height: auto;
+	margin: 15px auto 35px auto;
+}
+
+
+@media only screen and (min-width: 100px) and (max-width: 768px) {
+	.banner{
+		display: none;
+	}
+	.details{
+		margin-bottom: 30px;
+	}
+	.address{
+		font-family: "微软雅黑";
+		font-size: 10px;
+	}
+	.title p{
+		font-size: 16px;
+		overflow: hidden;
+    	text-overflow: ellipsis;
+    	white-space: nowrap;
+	}
+	.fonts img{
+		width: 100%;
+		height: auto;
+		margin: 10px auto;
+	}
+	.fonts *{
+		font-size: 12px;
+		line-height: 26px;
+	}
+	
+}
+
+
+.bg{
+	background: #0892DB;
+	border: none !important;
+}

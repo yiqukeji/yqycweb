@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="LeaderMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		WEB_LEADER
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		NAME,	
+		JOB,	
+		DESCRIPTION,	
+		GENDER,	
+		OLD,	
+		EMAIL,	
+		TEL,	
+		CONTENTS,	
+		C_TIME,	
+		PUB_TIME,	
+		PUB_USER,	
+		PUB_SOURCE,	
+		NUMBER,	
+		LEADER_ID,
+		PHOTO,
+		TYPE,
+		ADDRESS,
+		FAX,
+		HONOR,
+		EXP,
+		WORKEXP,
+		RD,
+		COURSE,
+		ACHIEVEMENT,
+		DEPARTMENT
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{NAME},	
+		#{JOB},	
+		#{DESCRIPTION},	
+		#{GENDER},	
+		#{OLD},	
+		#{EMAIL},	
+		#{TEL},	
+		#{CONTENTS},	
+		#{C_TIME},	
+		#{PUB_TIME},	
+		#{PUB_USER},	
+		#{PUB_SOURCE},	
+		#{NUMBER},	
+		#{LEADER_ID},
+		#{PHOTO},
+		#{TYPE},
+		#{ADDRESS},
+		#{FAX},
+		#{HONOR},
+		#{EXP},
+		#{WORKEXP},
+		#{RD},
+		#{COURSE},
+		#{ACHIEVEMENT},
+		#{DEPARTMENT}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			LEADER_ID = #{LEADER_ID}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+			NAME = #{NAME},
+			JOB = #{JOB},
+			DESCRIPTION = #{DESCRIPTION},
+			GENDER = #{GENDER},
+			OLD = #{OLD},
+			EMAIL = #{EMAIL},
+			TEL = #{TEL},
+			CONTENTS = #{CONTENTS},
+			PUB_TIME = #{PUB_TIME},
+			PUB_USER = #{PUB_USER},
+			PUB_SOURCE = #{PUB_SOURCE},
+			PHOTO = #{PHOTO},
+			TYPE = #{TYPE},
+			ADDRESS =#{ADDRESS},
+			FAX =#{FAX},
+			HONOR =#{HONOR},
+			EXP = #{EXP},
+			WORKEXP = #{WORKEXP},
+			RD =#{RD},
+			COURSE =#{COURSE},
+			ACHIEVEMENT =#{ACHIEVEMENT},
+			DEPARTMENT = #{DEPARTMENT}
+		where 
+		LEADER_ID = #{LEADER_ID}
+	</update>
+	<!-- 修改 -->
+	<update id="editByCount" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+		    NUMBER = #{NUMBER}
+		where 
+		LEADER_ID = #{LEADER_ID}
+	</update>
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include> t
+		where 
+			LEADER_ID = #{LEADER_ID}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include> t
+		where 1=1
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+				
+					NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				<!--	根据需求自己加检索条件	 or 
+					字段2 LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				-->
+				)
+		</if>
+		<if test="pd.TYPE!=null and pd.TYPE!=''">
+		and TYPE = #{pd.TYPE}
+		</if>
+		order by PUB_TIME desc
+	</select>
+	<!-- 列表 -->
+	<select id="listByType" parameterType="page" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include> t
+		where 1=1
+		<if test="pd.TYPE=='b4' ">
+		and TYPE = "bd04"
+		</if>
+		<if test="pd.TYPE=='b5' ">
+		and TYPE = "bd05"
+		</if>
+		<if test="pd.TYPE=='b6' ">
+		and TYPE = "bd06"
+		</if>
+		order by PUB_TIME desc
+	</select>
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include> t
+		order by PUB_TIME desc
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			LEADER_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+</mapper>
